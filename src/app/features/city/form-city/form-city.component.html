@@ -1,0 +1,23 @@
+<div>
+  <p-panel header="Cadastro de Cidades">
+    <form [formGroup]="formGroup" novalidate>
+      <div class="ui-g">
+        <div class="ui-g-12">
+          <span class="ui-float-label">
+            <input id="city" formControlName="city" type="text" pInputText>
+            <label for="city">Cidade</label>
+          </span>
+        </div>
+        <div class="ui-g-12">
+          <span class="ui-float-label">
+            <input id="codCountry" formControlName="codCountry" type="text" pInputText>
+            <label for="codCountry">Código do país</label>
+          </span>
+        </div>
+        <div class="ui-g-12">
+          <button id="add" type="add" pButton (click)="add()" label="Cadastrar" [disabled]="!formGroup.valid"></button>
+        </div>
+      </div>
+    </form>
+  </p-panel>
+</div>
