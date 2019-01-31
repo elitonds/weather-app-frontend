@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { WheatherService } from '../weather.service';
 import { map, switchMap } from "rxjs/operators";
 import { DataWeather } from '../dataWeather.dto';
+import { MessageService } from 'primeng/components/common/messageservice';
 
 @Component({
   selector: 'form-city',
@@ -13,7 +14,8 @@ export class FormCityComponent implements OnInit {
   public formGroup: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-    private weatherService: WheatherService) { }
+    private weatherService: WheatherService,
+    private messageService: MessageService) { }
 
   ngOnInit() {
     this.formGroup = this.formBuilder.group(
@@ -39,7 +41,8 @@ export class FormCityComponent implements OnInit {
     ).subscribe(response => {
       console.log('log')
     }, error =>{
-      console.log(error)
+      console.log(error);
+        this.messageService.add({key: 'main-toast', severity:'error', summary: 'Error', detail:error.error.message});
     })
   }
 }

@@ -13,6 +13,8 @@ import {PanelModule} from 'primeng/panel';
 import {TableModule} from 'primeng/table';
 import { WheatherService } from './features/city/weather.service';
 import { HttpClientModule } from '@angular/common/http';
+import {ToastModule} from 'primeng/toast';
+import { MessageService } from 'primeng/components/common/messageservice';
 
 @NgModule({
   declarations: [
@@ -30,9 +32,10 @@ import { HttpClientModule } from '@angular/common/http';
     PanelModule,
     BrowserAnimationsModule,
     TableModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastModule
   ],
-  providers: [WheatherService],
+  providers: [WheatherService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
