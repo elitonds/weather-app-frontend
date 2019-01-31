@@ -4,20 +4,18 @@
       <div class="ui-g">
         <div class="ui-g-12">
           <span class="ui-float-label">
-            <input id="city" formControlName="city" type="text" pInputText>
+            <input id="city" formControlName="city" type="text" pInputText maxlength="30">
             <label for="city">Cidade</label>
           </span>
         </div>
         <div class="ui-g-12">
           <span class="ui-float-label">
-            <input id="codCountry" formControlName="codCountry" type="text" pInputText>
+            <input id="codCountry" formControlName="codCountry" type="text" pInputText style="text-transform:uppercase" maxlength="2">
             <label for="codCountry">Código do país</label>
           </span>
-        </div>
-        <div class="ui-g-12">
-          <button id="add" type="add" pButton (click)="add()" label="Cadastrar" [disabled]="!formGroup.valid"></button>
         </div>
       </div>
     </form>
   </p-panel>
 </div>
+<grid-city [dataGrid]="cities" [totalRecords]="cities.length"></grid-city>

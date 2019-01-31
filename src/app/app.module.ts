@@ -15,12 +15,15 @@ import { WheatherService } from './features/city/weather.service';
 import { HttpClientModule } from '@angular/common/http';
 import {ToastModule} from 'primeng/toast';
 import { MessageService } from 'primeng/components/common/messageservice';
+import { ForecastComponent } from './features/forecast/forecast.component';
+import {CardModule} from 'primeng/card';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormCityComponent,
     GridCityComponent,
+    ForecastComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,8 @@ import { MessageService } from 'primeng/components/common/messageservice';
     BrowserAnimationsModule,
     TableModule,
     HttpClientModule,
-    ToastModule
+    ToastModule,
+    CardModule
   ],
   providers: [WheatherService, MessageService],
   bootstrap: [AppComponent]
