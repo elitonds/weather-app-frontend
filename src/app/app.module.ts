@@ -17,6 +17,8 @@ import {ToastModule} from 'primeng/toast';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { ForecastComponent } from './features/forecast/forecast.component';
 import {CardModule} from 'primeng/card';
+import {DataViewModule} from 'primeng/dataview';
+import { CardForecastComponent } from './features/forecast/card-forecast/card-forecast.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import {CardModule} from 'primeng/card';
     FormCityComponent,
     GridCityComponent,
     ForecastComponent,
+    CardForecastComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import {CardModule} from 'primeng/card';
     TableModule,
     HttpClientModule,
     ToastModule,
-    CardModule
+    CardModule,
+    DataViewModule
   ],
   providers: [WheatherService, MessageService],
   bootstrap: [AppComponent]

@@ -5,7 +5,7 @@ import { FormCityComponent } from './features/city/form-city/form-city.component
 
 const routes: Routes = [
    { path: '', component: FormCityComponent },
-   { path: 'forecast', component: ForecastComponent }
+   { path: 'forecast/:city', component: ForecastComponent }
 ];
 
 @NgModule({

@@ -1,10 +1,9 @@
-import { DataWeather } from './../dataWeather.dto';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { WheatherService } from '../weather.service';
-import { map, switchMap } from "rxjs/operators";
-import { DataCity } from '../dataCity.dto';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/components/common/messageservice';
+import { map } from "rxjs/operators";
+import { DataCity } from '../dataCity.dto';
+import { WheatherService } from '../weather.service';
 
 @Component({
   selector: 'form-city',
@@ -21,8 +20,6 @@ export class FormCityComponent implements OnInit {
     private messageService: MessageService) { }
 
   ngOnInit() {
-    this.cities.push({city:"London", codCountry:"GB"});
-    this.cities.push({city:"London", codCountry:"GB"});
     this.formGroup = this.formBuilder.group(
       {
         city: [{ value: undefined, disabled: false }, Validators.compose([Validators.required])],
@@ -36,7 +33,7 @@ export class FormCityComponent implements OnInit {
       city: this.formGroup.controls.city.value,
       codCountry: this.formGroup.controls.codCountry.value,
     }
-    this.weatherService.getWheather(data).pipe(
+    this.weatherService.getForecast(data).pipe(
       map((res: any) => {
         return res;
       }),

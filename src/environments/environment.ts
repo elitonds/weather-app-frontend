@@ -5,9 +5,7 @@
 export const environment = {
   production: false,
   path:{
-    openWeatherData:"http://api.openweathermap.org/data/2.5/forecast",
-    openWeatherIcons:"http://openweathermap.org/img/w/",
-    openWeatherWidget:"https://openweathermap.org/themes/openweathermap/assets/vendor/owm/img/widgets/",
+    openWeather:"http://api.openweathermap.org/",
     endpoints:""
   },
   apiKey:"eb8b1a9405e659b2ffc78f0a520b1a46"

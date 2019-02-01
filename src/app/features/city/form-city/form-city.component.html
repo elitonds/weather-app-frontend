@@ -14,6 +14,9 @@
             <label for="codCountry">Código do país</label>
           </span>
         </div>
+        <div class="ui-g-12">
+          <button id="add" type="add" pButton (click)="add()" label="Cadastrar" [disabled]="!formGroup.valid"></button>
+        </div>
       </div>
     </form>
   </p-panel>

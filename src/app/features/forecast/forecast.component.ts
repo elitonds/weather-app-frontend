@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataForecast } from './dataForecast.dto';
+import { WheatherService } from '../city/weather.service';
 
 @Component({
   selector: 'app-forecast',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ForecastComponent implements OnInit {
 
-  constructor() { }
+  data:DataForecast;
+  constructor(private weatherService:WheatherService) { }
 
   ngOnInit() {
+    this.data = this.weatherService.getMockForecast();
   }
 
 }

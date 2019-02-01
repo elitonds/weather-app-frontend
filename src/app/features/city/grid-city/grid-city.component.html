@@ -9,7 +9,7 @@
   <ng-template pTemplate="body" let-rowData let-columns="columns">
     <tr>
       <td *ngFor="let col of columns">
-        {{rowData[col.field]}}
+        <span *ngIf="col.field !== 'clima'">{{rowData[col.field]}}</span>
       </td>
     </tr>
   </ng-template>
