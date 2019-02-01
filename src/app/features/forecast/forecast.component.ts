@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataForecast } from './dataForecast.dto';
 import { WheatherService } from '../city/weather.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-forecast',
@@ -9,11 +10,17 @@ import { WheatherService } from '../city/weather.service';
 })
 export class ForecastComponent implements OnInit {
 
-  data:DataForecast;
-  constructor(private weatherService:WheatherService) { }
+  data: DataForecast;
+  cityName: string;
+
+  constructor(private weatherService: WheatherService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.data = this.weatherService.getMockForecast();
+    let routeParams = this.route.snapshot.paramMap.get("city").split(",");
+    this.cityName = routeParams[0];
+    this.weatherService.getForecast({ city: routeParams[0], codCountry: routeParams[1] }).subscribe(resp => {
+      this.data = resp;
+    });
   }
 
 }

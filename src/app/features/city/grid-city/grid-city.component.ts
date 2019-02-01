@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { DataCity } from './../dataCity.dto';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -8,21 +9,24 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class GridCityComponent implements OnInit {
 
-  @Input()
-  dataGrid : Array<DataCity> = new Array<DataCity>();
-  @Input()
-  totalRecords:number;
+  @Input() dataGrid : Array<DataCity> = new Array<DataCity>();
+  @Input() totalRecords:number;
 
   cols: any[];
 
-  constructor() { }
+  constructor(private route:Router) { }
 
   ngOnInit() {
+    this.dataGrid.push({city:"Blumenau", codCountry:"BR"})
     this.cols = [
       {field:'city',header:'Cidade'},
-      {field:'codCountry',header:'Cidade'},
+      {field:'codCountry',header:'País'},
       {field:'weather',header:'Clima'}
     ]
+  }
+
+  openForecast(row:DataCity){
+    this.route.navigateByUrl(`/forecast/${row.city},${row.codCountry}`);
   }
 
 }
