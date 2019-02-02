@@ -3,7 +3,7 @@
 </a>
 <div>
   <p-panel header="Clima de {{cityName}}">
-    <div class="ui-g">
+    <div class="ui-g" *ngIf="data">
       <div class="ui-g-2" *ngFor="let row of data.list">
         <card-forecast [data]="row"></card-forecast>
       </div>

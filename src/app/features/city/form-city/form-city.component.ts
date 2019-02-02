@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/components/common/messageservice';
-import { map } from "rxjs/operators";
 import { DataCity } from '../dataCity.dto';
 import { WheatherService } from '../weather.service';
 
@@ -12,8 +11,6 @@ import { WheatherService } from '../weather.service';
 export class FormCityComponent implements OnInit {
 
   public formGroup: FormGroup;
-  cities : Array<DataCity> = new Array<DataCity>();
-  totalRecords:number;
 
   constructor(private formBuilder: FormBuilder,
     private weatherService: WheatherService,
@@ -22,29 +19,28 @@ export class FormCityComponent implements OnInit {
   ngOnInit() {
     this.formGroup = this.formBuilder.group(
       {
-        city: [{ value: undefined, disabled: false }, Validators.compose([Validators.required])],
-        codCountry: [{ value: undefined, disabled: false }, Validators.compose([Validators.required])]
+        name: [{ value: undefined, disabled: false }, Validators.compose([Validators.required])],
+        country: [{ value: undefined, disabled: false }, Validators.compose([Validators.required])]
       }
     );
   }
 
   public add() {
     let data: DataCity = {
-      city: this.formGroup.controls.city.value,
-      codCountry: this.formGroup.controls.codCountry.value,
+      name: this.formGroup.controls.name.value,
+      country: this.formGroup.controls.country.value,
     }
-    this.weatherService.getForecast(data).pipe(
-      map((res: any) => {
-        return res;
-      }),
-      // switchMap((weather: DataWeather) => {
-      //     return this.weatherService.add(weather);
-      // }),
-    ).subscribe(response => {
-      this.cities.push(data);
+    this.weatherService.add(data).subscribe(response => {
+      let action = data.id ? 'alterada' : 'cadastrada';
+      this.messageService.add({ key: 'main-toast', severity: 'sucess', summary: 'Sucesso', detail: 'Cidade ' + action + ' com sucesso' });
+      window.location.reload();
     }, error => {
-      console.log(error);
-      this.messageService.add({ key: 'main-toast', severity: 'error', summary: 'Error', detail: error.error.message });
+      this.messageService.add({ key: 'main-toast', severity: 'error', summary: 'Erro', detail: error.error.message });
+      this.clearFields()
     })
+  }
+
+  clearFields() {
+    this.formGroup.reset();
   }
 }

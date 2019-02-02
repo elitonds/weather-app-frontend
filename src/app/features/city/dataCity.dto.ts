@@ -1,5 +1,6 @@
 export interface DataCity{
-    city:string,
-    codCountry:string,
+    id?:string,
+    name:string,
+    country:string,
     weather?:any
 }

@@ -4,14 +4,14 @@
       <div class="ui-g">
         <div class="ui-g-12">
           <span class="ui-float-label">
-            <input id="city" formControlName="city" type="text" pInputText maxlength="30">
-            <label for="city">Cidade</label>
+            <input id="name" formControlName="name" type="text" pInputText maxlength="30">
+            <label for="name">Cidade</label>
           </span>
         </div>
         <div class="ui-g-12">
           <span class="ui-float-label">
-            <input id="codCountry" formControlName="codCountry" type="text" pInputText style="text-transform:uppercase" maxlength="2">
-            <label for="codCountry">Código do país</label>
+            <input id="country" formControlName="country" type="text" pInputText style="text-transform:uppercase" maxlength="2">
+            <label for="country">Código do país</label>
           </span>
         </div>
         <div class="ui-g-12">
@@ -21,4 +21,4 @@
     </form>
   </p-panel>
 </div>
-<grid-city [dataGrid]="cities" [totalRecords]="cities.length"></grid-city>
+<grid-city></grid-city>

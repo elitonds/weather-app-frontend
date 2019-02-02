@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { DataCity } from './../dataCity.dto';
 import { Component, OnInit, Input } from '@angular/core';
+import { WheatherService } from '../weather.service';
 
 @Component({
   selector: 'grid-city',
@@ -9,24 +10,34 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class GridCityComponent implements OnInit {
 
-  @Input() dataGrid : Array<DataCity> = new Array<DataCity>();
-  @Input() totalRecords:number;
+  dataGrid: Array<DataCity> = new Array<DataCity>();
+  totalRecords: number;
 
   cols: any[];
 
-  constructor(private route:Router) { }
+  constructor(private route: Router, private weatherService: WheatherService) { }
 
   ngOnInit() {
-    this.dataGrid.push({city:"Blumenau", codCountry:"BR"})
     this.cols = [
-      {field:'city',header:'Cidade'},
-      {field:'codCountry',header:'País'},
-      {field:'weather',header:'Clima'}
+      { field: 'name', header: 'Cidade' },
+      { field: 'country', header: 'País' },
+      { field: 'weather', header: 'Clima' }
     ]
+    this.listCities();
   }
 
-  openForecast(row:DataCity){
-    this.route.navigateByUrl(`/forecast/${row.city},${row.codCountry}`);
+  openForecast(row: DataCity) {
+    this.route.navigateByUrl(`/forecast/${row.name},${row.country}`);
+  }
+
+  listCities() {
+    this.weatherService.list().subscribe(result => {
+      this.dataGrid = result.data;
+    })
+  }
+
+  onPage(event) {
+    console.log(event);
   }
 
 }

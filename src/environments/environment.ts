@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   path:{
     openWeather:"http://api.openweathermap.org/",
-    endpoints:""
+    endpoints:"http://localhost:8080"
   },
   apiKey:"eb8b1a9405e659b2ffc78f0a520b1a46"
 };

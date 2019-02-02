@@ -1,10 +1,9 @@
 <p-card>         
     <div>
-        <span>{{data.dt * 1000 | date}}</span><br>
+        <span>{{data.dt * 1000 | date: 'dd/MM'}}</span><br>
         <img style="width: 50px; height: 50px;" src="https://openweathermap.org/img/w/{{data.weather[0].icon}}.png"><br>
-        Mínima: {{data.temp.min}}<br>
-        Máxima: {{data.temp.max}}<br>
-        Clima: {{data.weather[0].description}}
+        <span>Mínima: {{data.temp.min | number:'2.0-0'}} ºC</span><br>
+        <span>Máxima: {{data.temp.max | number:'2.0-0'}} ºC</span><br>
     </div>
   </p-card>
 

@@ -18,7 +18,7 @@ export class ForecastComponent implements OnInit {
   ngOnInit() {
     let routeParams = this.route.snapshot.paramMap.get("city").split(",");
     this.cityName = routeParams[0];
-    this.weatherService.getForecast({ city: routeParams[0], codCountry: routeParams[1] }).subscribe(resp => {
+    this.weatherService.getForecast({ name: routeParams[0], country: routeParams[1] }).subscribe(resp => {
       this.data = resp;
     });
   }
