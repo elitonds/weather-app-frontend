@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { DataCity } from '../dataCity.dto';
 import { WheatherService } from '../weather.service';
+import { GridCityComponent } from '../grid-city/grid-city.component';
 
 @Component({
   selector: 'form-city',
@@ -11,6 +12,8 @@ import { WheatherService } from '../weather.service';
 export class FormCityComponent implements OnInit {
 
   public formGroup: FormGroup;
+  @ViewChild("grid")
+  public grid:GridCityComponent;
 
   constructor(private formBuilder: FormBuilder,
     private weatherService: WheatherService,
@@ -32,8 +35,9 @@ export class FormCityComponent implements OnInit {
     }
     this.weatherService.add(data).subscribe(response => {
       let action = data.id ? 'alterada' : 'cadastrada';
-      this.messageService.add({ key: 'main-toast', severity: 'sucess', summary: 'Sucesso', detail: 'Cidade ' + action + ' com sucesso' });
-      window.location.reload();
+      this.messageService.add({ key: 'main-toast', severity: 'sucess', summary: 'Sucesso', detail: 'Cidade ' + action + ' com sucesso' });  
+      this.grid.listCities()
+      this.clearFields()
     }, error => {
       this.messageService.add({ key: 'main-toast', severity: 'error', summary: 'Erro', detail: error.error.message });
       this.clearFields()

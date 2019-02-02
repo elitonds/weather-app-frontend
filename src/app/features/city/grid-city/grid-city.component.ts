@@ -1,7 +1,7 @@
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DataCity } from './../dataCity.dto';
-import { Component, OnInit, Input } from '@angular/core';
 import { WheatherService } from '../weather.service';
+import { DataCity } from './../dataCity.dto';
 
 @Component({
   selector: 'grid-city',
@@ -9,6 +9,7 @@ import { WheatherService } from '../weather.service';
   styleUrls: ['./grid-city.component.scss']
 })
 export class GridCityComponent implements OnInit {
+
 
   dataGrid: Array<DataCity> = new Array<DataCity>();
   totalRecords: number;
@@ -30,7 +31,7 @@ export class GridCityComponent implements OnInit {
     this.route.navigateByUrl(`/forecast/${row.name},${row.country}`);
   }
 
-  listCities() {
+  public listCities() {
     this.weatherService.list().subscribe(result => {
       this.dataGrid = result.data;
     })
