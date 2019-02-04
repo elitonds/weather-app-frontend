@@ -15,8 +15,8 @@ export class WheatherService{
         return this.http.get(`${environment.path.openWeather}/data/2.5/forecast/daily?q=${data.name},${data.country}&APPID=${environment.apiKey}&units=metric&cnt=5`);
     }
 
-    public list():Observable<any>{        
-        return this.http.get(`${environment.path.endpoints}${this.getApiCity()}?page=0&size=10`);
+    public list(page:number, size:number):Observable<any>{        
+        return this.http.get(`${environment.path.endpoints}${this.getApiCity()}?page=${page}&size=${size}`);
     }
 
     public add(data:any):Observable<any>{        

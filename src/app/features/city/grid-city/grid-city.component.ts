@@ -32,13 +32,19 @@ export class GridCityComponent implements OnInit {
   }
 
   public listCities() {
-    this.weatherService.list().subscribe(result => {
+    this.weatherService.list(0, 10).subscribe(result => {
       this.dataGrid = result.data;
+      this.totalRecords = result.total;
     })
   }
 
   onPage(event) {
-    console.log(event);
+    let page = event.first == 0?event.first:event.first/event.rows;
+    let size = event.rows;
+    this.weatherService.list(page, size).subscribe(result => {
+      this.dataGrid = result.data;
+      this.totalRecords = result.total;
+    })
   }
 
 }

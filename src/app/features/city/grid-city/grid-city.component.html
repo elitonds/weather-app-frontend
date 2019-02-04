@@ -1,4 +1,5 @@
-<p-table [columns]="cols" [rows]="10" [value]="dataGrid" [paginator]="true" [totalRecords]="dataGrid.lenght" (onPage)="onPage($event)">
+<p-table lazy="true" [columns]="cols" [rows]="10" [value]="dataGrid" [paginator]="true" [totalRecords]="totalRecords" (onPage)="onPage($event)"
+[rowsPerPageOptions]="[5,10,20]">
   <ng-template pTemplate="header" let-columns>
     <tr>
       <th *ngFor="let col of columns">
