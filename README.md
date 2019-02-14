@@ -1,6 +1,6 @@
 # WeatherAppFrontend
 
-Sistema de cadastro de cidades e consulta sobre o clima da das cidades cadastradas
+Sistema de cadastro de cidades e consulta sobre o clima das cidades cadastradas
 
 **Softwares necessários para rodar o projeto**
 
